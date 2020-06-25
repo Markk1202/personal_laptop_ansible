@@ -1,0 +1,14 @@
+---
+- name: Copy lockscreen to home folder
+  copy:
+    src: "../files/lockscreen.jpg"
+    dest: "/home/{{ username }}/.lockscreen.jpg"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0600'
+  
+- name: Set lockscreen for user
+  become_user: "{{ username }}"
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///home/{{ username }}/.lockscreen.jpg'"

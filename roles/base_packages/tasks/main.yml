@@ -1,0 +1,35 @@
+---
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Install base packages for basic use of laptop
+  apt:
+    state: present
+    pkg:
+    - vim
+    - net-tools
+    - qemu
+    - qemu-kvm
+    - libvirt-daemon
+    - virt-manager
+    - ubuntu-restricted-addons
+    - ubuntu-restricted-extras
+    - tree
+    - tmux
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+    - python3-setuptools
+    - dconf-editor
+    - python3-pip
+ 
+- name: Autoclean package cache
+  apt:
+    autoclean: yes
+
+- name: Autoremove unnecessary dependencies
+  apt:
+    autoremove: yes

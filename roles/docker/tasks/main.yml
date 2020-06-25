@@ -1,0 +1,25 @@
+---
+- name: Add Docker GPG apt key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  
+- name: Add Docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    update_cache: yes
+    name: docker
+    state: latest
+
+- name: Install Docker module for python
+  pip:
+    name: docker
+
+- name: Install docker-compose using apt
+  apt:
+    name: docker-compose
+    state: latest

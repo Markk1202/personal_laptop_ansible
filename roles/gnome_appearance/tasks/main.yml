@@ -1,0 +1,4 @@
+---
+  - include: theme.yml
+  - include: wallpaper.yml
+  - include: lockscreen.yml

@@ -1,0 +1,14 @@
+---
+- name: Copy theme to home folder
+  copy:
+    src: "../files/equilux"
+    dest: "'file:///home/{{ username}}/.themes/'"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0600'
+
+- name: Set GTK theme to user
+  become_user: "{{ username }}"
+  dconf:
+    key: "/org/gnome/desktop/interface/gtk-theme"
+    value: "'equilux'"

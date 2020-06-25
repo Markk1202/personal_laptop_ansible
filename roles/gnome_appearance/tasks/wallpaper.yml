@@ -1,0 +1,14 @@
+---
+- name: Copy wallpaper to home folder
+  copy:
+    src: "../files/wallpaper.jpg"
+    dest: "/home/{{ username }}/.wallpaper.jpg"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0600'
+
+- name: Set wallpaper for user
+  become_user: "{{ username }}"
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///home/{{ username }}/.wallpaper.jpg'"

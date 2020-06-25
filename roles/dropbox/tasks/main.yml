@@ -1,0 +1,16 @@
+---
+- name: Add Dropbox GPG Key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+
+- name: Add Dropbox Repository
+  apt_repository:
+    repo: deb https://linux.dropbox.com/ubuntu trusty main
+    state: present
+
+- name: Update apt and install Dropbox
+  apt:
+    update_cache: yes
+    name: dropbox
+    state: latest

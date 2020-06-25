@@ -1,0 +1,22 @@
+---
+  - name: Install snap daemon
+    apt:
+      name: snapd
+
+  - name: Start and enable snapd daemon
+    systemd:
+      name: snapd
+      state: started
+      enabled: yes
+
+  - name: Install snap packages
+    snap:
+      name: 
+        - spotify
+        - discord
+        - telegram-desktop
+
+  - name: Install classic snap packages
+    snap:
+      name: codium
+      classic: yes
